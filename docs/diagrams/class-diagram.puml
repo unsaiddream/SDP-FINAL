@@ -1,0 +1,71 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam classBackgroundColor #F2F6FD
+skinparam classBorderColor #3053B8
+skinparam ArrowColor #334F6A
+hide empty members
+class StudioFrame
+class StudioFacade {
+  +saveEvent(event)
+  +saveBooking(id, eventId, personId, seats)
+  +changeStatus(eventId, target)
+  +quote(eventId)
+  +export(eventId, creator, path)
+}
+interface StudioRepository {
+  +load(): Optional<StudioState>
+  +save(state)
+}
+class JsonStudioRepository
+class StudioState {
+  events, participants, bookings
+}
+class PriceCalculator
+StudioFrame --> StudioFacade : invokes use cases
+StudioFacade --> StudioRepository : persists before publish
+StudioRepository <|.. JsonStudioRepository
+StudioFacade *-- StudioState : committed snapshot
+StudioFacade --> PriceCalculator : prices configured event
+package "Observer" {
+class EventBus {
+  +subscribe(observer): AutoCloseable
+  +publish(event)
+}
+interface StudioObserver {
+  +onChange(event)
+}
+class StudioEvent {
+  occurredAt, message
+}
+EventBus o-- "0..*" StudioObserver : subscribers
+EventBus ..> StudioEvent : publishes
+}
+StudioFacade --> EventBus : committed changes
+StudioFrame ..> StudioObserver : supplies callback and unsubscribes
+package "Factory Method" {
+abstract class ExportCreator {
+  +export(report, path): Path
+  #createExporter(): ReportExporter
+}
+class CsvExportCreator
+class HtmlExportCreator
+interface ReportExporter {
+  +render(report): String
+}
+class CsvReportExporter
+class HtmlReportExporter
+ExportCreator <|-- CsvExportCreator
+ExportCreator <|-- HtmlExportCreator
+ReportExporter <|.. CsvReportExporter
+ReportExporter <|.. HtmlReportExporter
+ExportCreator --> ReportExporter : uses factory product
+CsvExportCreator ..> CsvReportExporter : creates
+HtmlExportCreator ..> HtmlReportExporter : creates
+}
+StudioFacade --> ExportCreator : delegates output
+@enduml

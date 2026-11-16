@@ -1,0 +1,46 @@
+@startuml
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 150
+skinparam ParticipantBackgroundColor #F2F6FD
+skinparam ParticipantBorderColor #3053B8
+actor Organizer
+participant StudioFrame as UI
+participant StudioFacade as Facade
+participant StudioState as State
+participant JsonStudioRepository as Store
+participant EventBus as Bus
+participant PriceCalculator as Price
+Organizer -> UI : Save booking for 10 guests
+UI -> Facade : saveBooking(null, eventId, personId, 10)
+Facade -> Facade : validate open event, participant and duplicate
+Facade -> State : construct next immutable state
+State -> State : validate relationships and capacity
+alt validation succeeds
+  Facade -> Store : save(nextState)
+  Store -> Store : write temporary JSON, force, replace
+  alt save succeeds
+    Store --> Facade : saved
+    Facade -> Facade : install nextState
+    Facade -> Bus : publish(committed change)
+    Bus -> UI : observer.onChange(event)
+    UI -> Facade : quote(selectedEventId)
+    Facade -> Price : calculate(event, confirmedSeats)
+    Price -> Price : PackagePrice wrapped by ExtraDecorator(s)
+    Price -> Price : selected PricingStrategy.discountRate(10)
+    Price --> Facade : Quote
+    Facade --> UI : Quote
+    UI -> UI : refresh total, seats, guest list and activity
+    Facade --> UI : Booking
+  else write fails
+    Store --> Facade : IOException
+    Facade --> UI : error, no state change or publication
+    UI -> Organizer : show error and keep form open
+  end
+else invalid input or overcapacity
+  Facade --> UI : ValidationException
+  UI -> Organizer : show inline validation
+end
+@enduml

@@ -1,0 +1,19 @@
+Event Studio third-party runtime notices
+
+This executable bundles the following dependencies:
+
+Google Gson 2.11.0
+Maven coordinate: com.google.code.gson:gson:2.11.0
+License: Apache License 2.0
+Upstream project: https://github.com/google/gson
+License source: https://github.com/google/gson/blob/gson-parent-2.11.0/LICENSE
+Full license: META-INF/licenses/gson-LICENSE.txt
+
+Google Error Prone annotations 2.27.0
+Maven coordinate: com.google.errorprone:error_prone_annotations:2.27.0
+License: Apache License 2.0
+Upstream project: https://github.com/google/error-prone
+License source: https://github.com/google/error-prone/blob/v2.27.0/COPYING
+Full license: META-INF/licenses/error-prone-COPYING.txt
+
+JUnit, Maven, PlantUML and report-generation tools are development tools and are not bundled in the application JAR.

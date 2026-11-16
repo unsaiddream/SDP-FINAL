@@ -1,0 +1,68 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam classBackgroundColor #F2F6FD
+skinparam classBorderColor #3053B8
+skinparam ArrowColor #334F6A
+hide empty members
+package "Domain and Builder" {
+class Event {
+  id, title, date, venue, capacity
+  packageTier, extras, pricingMode, status
+  +toBuilder(): Builder
+}
+class "Event.Builder" as Builder {
+  +title(value): Builder
+  +extras(value): Builder
+  +pricingMode(value): Builder
+  +build(): Event
+}
+class Participant {
+  id, name, email
+}
+class Booking {
+  id, eventId, participantId
+  seats, status
+}
+Event "1" -- "0..*" Booking : eventId
+Participant "1" -- "0..*" Booking : participantId
+Builder ..> Event : creates immutable result
+}
+package "Decorator and Strategy" {
+interface PriceComponent {
+  +unitPrice(): BigDecimal
+  +descriptions(): List
+}
+class PackagePrice
+class ExtraDecorator {
+  wrapped: PriceComponent
+  extra: Extra
+}
+PriceComponent <|.. PackagePrice
+PriceComponent <|.. ExtraDecorator
+ExtraDecorator o-- PriceComponent : wraps
+class PriceCalculator {
+  +calculate(event, guests): Quote
+}
+class Quote {
+  guests, subtotal, discount, total
+}
+interface PricingStrategy {
+  +discountRate(guests): BigDecimal
+  +description(): String
+}
+class StandardPricing
+class GroupPricing
+PricingStrategy <|.. StandardPricing
+PricingStrategy <|.. GroupPricing
+PriceCalculator --> PricingStrategy : selects from saved mode
+PriceCalculator ..> PackagePrice : creates base
+PriceCalculator ..> ExtraDecorator : composes selected extras
+PriceCalculator ..> Quote : produces
+}
+Event ..> PriceCalculator : input
+@enduml

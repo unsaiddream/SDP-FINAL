@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="kz.aitu.eventstudio.StudioFacadeTest" time="0.463" tests="21" errors="0" skipped="0" failures="0">
+  <testcase name="exportEscapesMarkupQuotesAndSpreadsheetFormulas" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.104" />
+  <testcase name="rejectZeroNegativeAndExcessiveSeats" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.021" />
+  <testcase name="committedChangesNotifyObserversAndUnsubscribeWorks" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.022" />
+  <testcase name="completeJourneySavesConfiguredEventBooksExportsAndReloads" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.043" />
+  <testcase name="groupDiscountStartsAtExactlyTenGuests" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.009" />
+  <testcase name="switchingStrategiesChangesPersistedQuote" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.019" />
+  <testcase name="factoryMethodExportsBothFormatsWithIdenticalTotals" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.011" />
+  <testcase name="cancellationCascadesAtomicallyAndPreservesHistory" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.013" />
+  <testcase name="missingReferencesAreRejected" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.018" />
+  <testcase name="rejectPastDateWithoutChangingState" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.006" />
+  <testcase name="invalidLifecycleActionsAreRejected" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.027" />
+  <testcase name="rejectInvalidAndDuplicateEmails" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.017" />
+  <testcase name="decoratorsComposeWithoutMutatingBasePackage" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.007" />
+  <testcase name="rejectOverbookingAndReducingCapacityBelowOccupiedSeats" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.021" />
+  <testcase name="brokenSubscriberDoesNotPreventOtherSubscribersOrSaving" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.012">
+    <system-err>A subscriber could not refresh: test subscriber failed
+</system-err>
+  </testcase>
+  <testcase name="failedDiskWriteDoesNotMutateStateOrPublishEvent" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.007" />
+  <testcase name="rejectCapacityBoundsAndDuplicateExtras" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.007" />
+  <testcase name="safeDeletionHonorsRelationships" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.023" />
+  <testcase name="immutableSnapshotsCannotBeModified" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.008" />
+  <testcase name="bookingCanBeEditedCancelledAndRebooked" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.039" />
+  <testcase name="rejectBlankFieldsAndMalformedDates" classname="kz.aitu.eventstudio.StudioFacadeTest" time="0.008" />
+</testsuite>

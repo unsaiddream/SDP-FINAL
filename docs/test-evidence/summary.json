@@ -1,0 +1,71 @@
+{
+  "recorded_date": "2026-11-16",
+  "suites": [
+    {
+      "suite": "StudioFacadeTest",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.463,
+      "methods": [
+        "exportEscapesMarkupQuotesAndSpreadsheetFormulas",
+        "rejectZeroNegativeAndExcessiveSeats",
+        "committedChangesNotifyObserversAndUnsubscribeWorks",
+        "completeJourneySavesConfiguredEventBooksExportsAndReloads",
+        "groupDiscountStartsAtExactlyTenGuests",
+        "switchingStrategiesChangesPersistedQuote",
+        "factoryMethodExportsBothFormatsWithIdenticalTotals",
+        "cancellationCascadesAtomicallyAndPreservesHistory",
+        "missingReferencesAreRejected",
+        "rejectPastDateWithoutChangingState",
+        "invalidLifecycleActionsAreRejected",
+        "rejectInvalidAndDuplicateEmails",
+        "decoratorsComposeWithoutMutatingBasePackage",
+        "rejectOverbookingAndReducingCapacityBelowOccupiedSeats",
+        "brokenSubscriberDoesNotPreventOtherSubscribersOrSaving",
+        "failedDiskWriteDoesNotMutateStateOrPublishEvent",
+        "rejectCapacityBoundsAndDuplicateExtras",
+        "safeDeletionHonorsRelationships",
+        "immutableSnapshotsCannotBeModified",
+        "bookingCanBeEditedCancelledAndRebooked",
+        "rejectBlankFieldsAndMalformedDates"
+      ]
+    },
+    {
+      "suite": "JsonStudioRepositoryTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.057,
+      "methods": [
+        "orphanedAndOverbookedPersistedDataAreRejected",
+        "jsonRoundTripPreservesUnicodeAndAllRelationships",
+        "emptyNullAndUnsupportedVersionsAreRejected",
+        "secondWriterIsRejectedUntilFirstWindowCloses",
+        "corruptDataIsReportedAndNeverOverwrittenWithSamples",
+        "existingEmptyWorkspaceDoesNotReseedAndTemporaryFilesAreCleaned"
+      ]
+    },
+    {
+      "suite": "StudioGuiTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 3.001,
+      "methods": [
+        "userCreatesConfiguresBooksAndExportsThroughActualControls",
+        "validationStaysVisibleAndDoesNotSaveBadForm",
+        "observerRefreshesSelectedQuoteWhenDataChanges"
+      ]
+    }
+  ],
+  "total_tests": 30,
+  "commands": [
+    "mvn clean verify",
+    "mvn -Pgui test -Dstudio.screenshotDir=docs/screenshots"
+  ],
+  "environment": "macOS arm64; openjdk version \"25.0.1\" 2025-10-21; Apache Maven 3.9.16 (Java version: 27); source release 17"
+}
